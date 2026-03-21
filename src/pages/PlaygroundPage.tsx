@@ -76,7 +76,7 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1.55fr)_280px] 2xl:grid-cols-[360px_minmax(0,1.7fr)_300px]">
+      <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1.75fr)_260px] 2xl:grid-cols-[360px_minmax(0,1.9fr)_280px]">
         <AnimationList
           animations={animationOptions}
           selectedAnimationId={selectedAnimationId}
@@ -89,7 +89,7 @@ export function PlaygroundPage() {
           previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
         />
 
-        <div className="grid gap-6 lg:col-span-2 xl:col-span-1 xl:content-start">
+        <div className="lg:col-span-2 xl:col-span-1 xl:content-start">
           <ControlPanel
             duration={duration}
             delay={delay}
@@ -103,8 +103,12 @@ export function PlaygroundPage() {
             onEasingChange={setEasing}
             onIterationCountChange={setIterationCount}
           />
-          <CodeOutputPanel css={generatedCss} />
         </div>
+      </section>
+
+      <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+        <div className="hidden lg:block" />
+        <CodeOutputPanel css={generatedCss} />
       </section>
     </div>
   );
