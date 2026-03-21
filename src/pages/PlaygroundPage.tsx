@@ -63,9 +63,6 @@ export function PlaygroundPage() {
               layout built for fast visual iteration.
             </p>
           </div>
-          <div className="rounded-3xl border border-blue-100 bg-blue-50 px-5 py-4 text-sm text-blue-900 shadow-soft">
-            Left for presets, center for preview, right for settings and CSS.
-          </div>
         </div>
       </section>
 
