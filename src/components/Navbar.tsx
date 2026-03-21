@@ -17,7 +17,7 @@ export function Navbar() {
           </div>
           <div>
             <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 uppercase">
-              MotionForge
+              3xample
             </p>
             <p className="text-xs text-slate-500">UI animation playground</p>
           </div>

@@ -7,7 +7,7 @@ const previewAnimations = [
     title: 'Launch polished reveals',
     description: 'Preview smooth intro motion for product cards, CTAs, and onboarding UI.',
     animationStyle: {
-      animation: 'motionforgeFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both',
+      animation: 'threeXampleFadeIn 0.9s ease-out both',
     },
     accentClassName: 'from-blue-500/15 via-white to-sky-400/20',
   },
@@ -16,7 +16,7 @@ const previewAnimations = [
     title: 'Add subtle floating depth',
     description: 'Create micro-motions that feel premium without overpowering the interface.',
     animationStyle: {
-      animation: 'motionforgeFloat 2.8s ease-in-out infinite',
+      animation: 'threeXampleSlideUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) both',
     },
     accentClassName: 'from-cyan-500/15 via-white to-emerald-400/20',
   },
@@ -25,7 +25,7 @@ const previewAnimations = [
     title: 'Emphasize key moments',
     description: 'Use glow and pulse patterns to draw attention to status updates or feature chips.',
     animationStyle: {
-      animation: 'motionforgePulseGlow 2s ease-in-out infinite',
+      animation: 'threeXampleBounce 1.4s ease infinite',
     },
     accentClassName: 'from-indigo-500/15 via-white to-blue-300/25',
   },
@@ -48,7 +48,7 @@ export function HomePage() {
               Build and preview UI animations instantly
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              MotionForge gives you a lightweight space to test polished interface motion, tune the
+              3xample gives you a lightweight space to test polished interface motion, tune the
               timing, and copy production-friendly CSS in seconds.
             </p>
 
@@ -74,7 +74,7 @@ export function HomePage() {
               <div className="mt-5 rounded-2xl bg-white/10 p-4 backdrop-blur">
                 <div
                   className="h-28 rounded-2xl border border-white/20 bg-gradient-to-br from-blue-500 to-cyan-400"
-                  style={{ animation: 'motionforgeFloat 2.6s ease-in-out infinite' }}
+                  style={{ animation: 'threeXampleScaleIn 0.9s ease-out both' }}
                 />
               </div>
               <div className="mt-5 grid gap-3 text-sm text-slate-300">
