@@ -26,7 +26,7 @@ export function ControlPanel({
   onIterationCountChange,
 }: ControlPanelProps) {
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-soft sm:p-6">
+    <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-panel sm:p-6">
       <p className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">Controls</p>
       <h2 className="mt-2 text-2xl font-semibold text-slate-950">Adjust settings</h2>
 
@@ -34,20 +34,20 @@ export function ControlPanel({
         <button
           type="button"
           onClick={onReplay}
-          className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+          className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lift active:translate-y-0"
         >
           Replay Animation
         </button>
         <button
           type="button"
           onClick={onReset}
-          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-white hover:text-slate-950"
+          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:text-slate-950 active:translate-y-0"
         >
           Reset
         </button>
       </div>
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-7 space-y-6">
         <label className="block">
           <div className="mb-2 flex items-center justify-between text-sm font-medium text-slate-700">
             <span>Duration</span>

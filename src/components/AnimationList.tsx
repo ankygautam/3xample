@@ -12,7 +12,7 @@ export function AnimationList({
   onSelect,
 }: AnimationListProps) {
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-soft sm:p-6">
+    <section className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-panel sm:p-6 xl:sticky xl:top-28">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">
@@ -34,21 +34,23 @@ export function AnimationList({
               key={animation.id}
               type="button"
               onClick={() => onSelect(animation)}
-              className={`rounded-2xl border px-4 py-4 text-left transition ${
+              className={`rounded-[1.6rem] border px-4 py-4 text-left transition ${
                 isActive
-                  ? 'border-blue-500 bg-blue-50 shadow-soft'
-                  : 'border-slate-200 bg-slate-50 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white'
+                  ? 'border-blue-500 bg-[linear-gradient(180deg,_rgba(239,246,255,0.9),_rgba(255,255,255,1))] shadow-lift'
+                  : 'border-slate-200 bg-slate-50/90 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-white hover:shadow-soft'
               }`}
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="text-base font-semibold text-slate-950">{animation.name}</span>
+                <span className="text-[1.15rem] font-semibold tracking-tight text-slate-950">
+                  {animation.name}
+                </span>
                 <span
                   className={`h-2.5 w-2.5 rounded-full ${
                     isActive ? 'bg-blue-600' : 'bg-slate-300'
                   }`}
                 />
               </div>
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-3 text-sm text-slate-500">
                 {animation.defaultDuration}ms default duration
               </p>
             </button>

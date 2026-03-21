@@ -12,7 +12,9 @@ export default {
         },
       },
       boxShadow: {
-        soft: '0 20px 45px -24px rgba(15, 23, 42, 0.24)',
+        soft: '0 20px 45px -24px rgba(15, 23, 42, 0.18)',
+        panel: '0 22px 50px -28px rgba(15, 23, 42, 0.16)',
+        lift: '0 26px 60px -30px rgba(37, 99, 235, 0.22)',
       },
       backgroundImage: {
         'grid-fade':

@@ -58,7 +58,7 @@ export function PlaygroundPage() {
   };
 
   return (
-    <div className="space-y-8 pb-8 pt-8 sm:space-y-10 sm:pt-12">
+    <div className="space-y-8 pb-10 pt-8 sm:space-y-10 sm:pt-12">
       <section className="flex flex-col gap-3">
         <p className="text-sm font-semibold tracking-[0.24em] text-blue-700 uppercase">
           Animation playground
@@ -76,7 +76,7 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)_340px]">
+      <section className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)_360px]">
         <AnimationList
           animations={animationOptions}
           selectedAnimationId={selectedAnimationId}
@@ -89,7 +89,7 @@ export function PlaygroundPage() {
           previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
         />
 
-        <div className="grid gap-6">
+        <div className="grid gap-6 lg:col-span-2 xl:col-span-1">
           <ControlPanel
             duration={duration}
             delay={delay}

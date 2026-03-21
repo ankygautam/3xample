@@ -10,7 +10,7 @@ function App() {
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-950">
       <style>{animationOptions.map((animation) => animation.keyframes).join('\n\n')}</style>
       <Navbar />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 sm:px-6 lg:px-8">
+      <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 sm:px-6 lg:px-8">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
