@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `rounded-full px-4 py-2.5 text-sm font-semibold transition ${
+  `flex h-10 items-center justify-center rounded-full px-4 text-sm font-semibold transition-colors ${
     isActive
       ? 'bg-slate-950 text-white shadow-lift'
       : 'text-slate-600 hover:bg-white hover:text-slate-950'
@@ -19,11 +19,11 @@ export function Navbar() {
             <p className="text-xs font-semibold tracking-[0.28em] text-blue-700 uppercase sm:text-sm">
               3xample
             </p>
-            <p className="hidden text-sm text-slate-500 sm:block">UI animation playground</p>
+            <p className="text-xs text-slate-500 sm:text-sm">UI animation playground</p>
           </div>
         </NavLink>
 
-        <nav className="grid w-full grid-cols-3 gap-1 rounded-full border border-slate-200 bg-white/90 p-1.5 shadow-soft sm:flex sm:w-auto sm:items-center sm:gap-2">
+        <nav className="grid w-full grid-cols-3 gap-1 rounded-full border border-slate-200 bg-white/90 p-1.5 shadow-soft sm:flex sm:w-auto sm:items-center sm:gap-1.5">
           <NavLink to="/" className={navLinkClass} end>
             Home
           </NavLink>

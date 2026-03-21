@@ -66,6 +66,7 @@ export function AnimatedPreviewCard({
       style={animationStyle}
     >
       <div className="absolute inset-x-6 top-0 h-16 rounded-b-full bg-white/60 blur-2xl" />
+      <div className="absolute right-5 top-5 h-12 w-12 rounded-full bg-white/35 blur-2xl" />
       <p className="text-xs font-semibold tracking-[0.24em] text-slate-500 uppercase">{eyebrow}</p>
       <h3 className="mt-5 text-[1.45rem] font-semibold tracking-tight text-slate-950 sm:mt-6 sm:text-2xl">
         {title}

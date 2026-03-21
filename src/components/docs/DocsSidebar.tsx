@@ -12,7 +12,7 @@ export function DocsSidebar() {
   const { pathname } = useLocation();
 
   return (
-    <aside className="self-start overflow-hidden rounded-[1.9rem] border border-slate-200 bg-white shadow-panel">
+    <aside className="self-start overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-panel">
       <div className="border-b border-slate-200 px-5 py-5 sm:px-6">
         <p className="text-[0.68rem] font-semibold tracking-[0.28em] text-slate-500 uppercase">
           Documentation
@@ -23,13 +23,13 @@ export function DocsSidebar() {
       </div>
 
       <div className="max-h-[24rem] overflow-y-auto px-4 py-4 sm:px-5 xl:max-h-none xl:overflow-visible">
-        <nav aria-label="Documentation navigation" className="space-y-5">
+        <nav aria-label="Documentation navigation" className="space-y-4.5">
           {docsGroups.map((group) => (
             <div key={group.title}>
               <p className="px-2 text-xs font-semibold tracking-[0.18em] text-slate-600 uppercase">
                 {group.title}
               </p>
-              <div className="mt-2 space-y-1 border-l border-slate-200 pl-3">
+              <div className="mt-1.5 space-y-1 border-l border-slate-200/90 pl-3">
                 {group.pages.map((page) => {
                   const isIntroRoute = page.slug === 'introduction' && pathname === '/docs';
                   const isActive = isIntroRoute || pathname === `/docs/${page.slug}`;

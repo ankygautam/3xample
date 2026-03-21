@@ -37,7 +37,7 @@ export function MobileUsagePanel({
   };
 
   return (
-    <section className="rounded-[1.85rem] border border-slate-200 bg-white p-4 shadow-panel md:hidden">
+    <section className="rounded-[2rem] border border-slate-200 bg-white p-4 shadow-panel md:hidden">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">Usage</p>

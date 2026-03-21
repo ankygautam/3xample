@@ -78,21 +78,33 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="grid gap-5 lg:grid-cols-[292px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1.55fr)_272px] 2xl:grid-cols-[316px_minmax(0,1.68fr)_284px]">
+      <section className="md:hidden">
         <AnimationList
           groups={animationGroups}
           selectedAnimationId={selectedAnimationId}
           onSelect={handleAnimationSelect}
         />
+      </section>
 
+      <section className="md:hidden">
         <MobileUsagePanel
           animationName={selectedAnimation.name}
           animationStyle={animationStyle}
           previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
           css={generatedCss}
         />
+      </section>
 
-        <div className="hidden md:block">
+      <section className="hidden gap-5 md:grid lg:grid-cols-[292px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1.55fr)_272px] 2xl:grid-cols-[316px_minmax(0,1.68fr)_284px]">
+        <div className="lg:row-span-2">
+          <AnimationList
+            groups={animationGroups}
+            selectedAnimationId={selectedAnimationId}
+            onSelect={handleAnimationSelect}
+          />
+        </div>
+
+        <div className="min-w-0">
           <PreviewPanel
             animationName={selectedAnimation.name}
             animationStyle={animationStyle}
@@ -115,11 +127,8 @@ export function PlaygroundPage() {
             onIterationCountChange={setIterationCount}
           />
         </div>
-      </section>
 
-      <section className="hidden gap-5 md:grid md:-mt-1 lg:grid-cols-[292px_minmax(0,1fr)]">
-        <div className="hidden lg:block" />
-        <div className="min-w-0">
+        <div className="min-w-0 lg:col-start-2 xl:col-span-2 xl:col-start-2">
           <CodeOutputPanel css={generatedCss} />
         </div>
       </section>

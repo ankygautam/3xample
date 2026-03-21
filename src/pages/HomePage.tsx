@@ -36,13 +36,13 @@ const previewAnimations = [
 
 export function HomePage() {
   return (
-    <div className="space-y-20 pb-10 pt-8 sm:space-y-24 sm:pt-12">
+    <div className="space-y-16 pb-10 pt-8 sm:space-y-20 sm:pt-12">
       <section className="relative overflow-hidden rounded-[2.3rem] border border-slate-200 bg-white px-6 py-12 shadow-panel sm:px-10 lg:px-12 lg:py-16">
         <div className="absolute inset-0 bg-grid-fade bg-grid-pattern opacity-60" />
         <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-blue-200/40 blur-3xl" />
         <div className="absolute bottom-0 left-0 h-48 w-48 rounded-full bg-cyan-100/60 blur-3xl" />
 
-        <div className="relative grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="relative grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/90 px-4 py-2 text-sm font-medium text-blue-700">
               Motion system starter
@@ -99,7 +99,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section>
+      <section className="pt-1 sm:pt-2">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold tracking-[0.24em] text-blue-700 uppercase">Preview presets</p>
@@ -113,7 +113,7 @@ export function HomePage() {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-7 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {previewAnimations.map((card) => (
             <AnimatedPreviewCard key={card.title} {...card} />
           ))}
