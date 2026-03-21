@@ -4,6 +4,8 @@ type ControlPanelProps = {
   easing: string;
   iterationCount: string;
   timingOptions: string[];
+  onReplay: () => void;
+  onReset: () => void;
   onDurationChange: (value: number) => void;
   onDelayChange: (value: number) => void;
   onEasingChange: (value: string) => void;
@@ -16,6 +18,8 @@ export function ControlPanel({
   easing,
   iterationCount,
   timingOptions,
+  onReplay,
+  onReset,
   onDurationChange,
   onDelayChange,
   onEasingChange,
@@ -26,21 +30,49 @@ export function ControlPanel({
       <p className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">Controls</p>
       <h2 className="mt-2 text-2xl font-semibold text-slate-950">Adjust settings</h2>
 
+      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        <button
+          type="button"
+          onClick={onReplay}
+          className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+        >
+          Replay Animation
+        </button>
+        <button
+          type="button"
+          onClick={onReset}
+          className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-white hover:text-slate-950"
+        >
+          Reset
+        </button>
+      </div>
+
       <div className="mt-6 space-y-5">
         <label className="block">
           <div className="mb-2 flex items-center justify-between text-sm font-medium text-slate-700">
             <span>Duration</span>
             <span>{duration}ms</span>
           </div>
-          <input
-            type="range"
-            min="200"
-            max="4000"
-            step="50"
-            value={duration}
-            onChange={(event) => onDurationChange(Number(event.target.value))}
-            className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-blue-600"
-          />
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_112px] sm:items-center">
+            <input
+              type="range"
+              min="200"
+              max="4000"
+              step="50"
+              value={duration}
+              onChange={(event) => onDurationChange(Number(event.target.value))}
+              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-blue-600"
+            />
+            <input
+              type="number"
+              min="200"
+              max="4000"
+              step="50"
+              value={duration}
+              onChange={(event) => onDurationChange(Number(event.target.value))}
+              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-400 focus:bg-white"
+            />
+          </div>
         </label>
 
         <label className="block">
@@ -48,15 +80,26 @@ export function ControlPanel({
             <span>Delay</span>
             <span>{delay}ms</span>
           </div>
-          <input
-            type="range"
-            min="0"
-            max="2000"
-            step="50"
-            value={delay}
-            onChange={(event) => onDelayChange(Number(event.target.value))}
-            className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-blue-600"
-          />
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_112px] sm:items-center">
+            <input
+              type="range"
+              min="0"
+              max="2000"
+              step="50"
+              value={delay}
+              onChange={(event) => onDelayChange(Number(event.target.value))}
+              className="h-2 w-full cursor-pointer appearance-none rounded-full bg-slate-200 accent-blue-600"
+            />
+            <input
+              type="number"
+              min="0"
+              max="2000"
+              step="50"
+              value={delay}
+              onChange={(event) => onDelayChange(Number(event.target.value))}
+              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-blue-400 focus:bg-white"
+            />
+          </div>
         </label>
 
         <label className="block">

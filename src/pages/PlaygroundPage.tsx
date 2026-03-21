@@ -20,6 +20,7 @@ export function PlaygroundPage() {
   const [delay, setDelay] = useState(initialAnimation.defaultDelay);
   const [easing, setEasing] = useState(initialAnimation.defaultEasing);
   const [iterationCount, setIterationCount] = useState(initialAnimation.defaultIterationCount);
+  const [replayCount, setReplayCount] = useState(0);
 
   const selectedAnimation = animationLookup[selectedAnimationId];
   const animationName = getAnimationKeyframesName(selectedAnimation.id);
@@ -39,12 +40,26 @@ export function PlaygroundPage() {
   animation-fill-mode: both;
 }`;
 
-  const handleAnimationSelect = (animation: AnimationConfig) => {
-    setSelectedAnimationId(animation.id);
+  const applyAnimationDefaults = (animation: AnimationConfig) => {
     setDuration(animation.defaultDuration);
     setDelay(animation.defaultDelay);
     setEasing(animation.defaultEasing);
     setIterationCount(animation.defaultIterationCount);
+  };
+
+  const handleAnimationSelect = (animation: AnimationConfig) => {
+    setSelectedAnimationId(animation.id);
+    applyAnimationDefaults(animation);
+    setReplayCount((current) => current + 1);
+  };
+
+  const handleReplay = () => {
+    setReplayCount((current) => current + 1);
+  };
+
+  const handleReset = () => {
+    applyAnimationDefaults(selectedAnimation);
+    setReplayCount((current) => current + 1);
   };
 
   return (
@@ -76,7 +91,7 @@ export function PlaygroundPage() {
         <PreviewPanel
           animationName={selectedAnimation.name}
           animationStyle={animationStyle}
-          previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}`}
+          previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
         />
 
         <div className="grid gap-6">
@@ -86,6 +101,8 @@ export function PlaygroundPage() {
             easing={easing}
             iterationCount={iterationCount}
             timingOptions={timingOptions}
+            onReplay={handleReplay}
+            onReset={handleReset}
             onDurationChange={setDuration}
             onDelayChange={setDelay}
             onEasingChange={setEasing}

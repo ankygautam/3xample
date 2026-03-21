@@ -45,10 +45,10 @@ export const animationOptions: AnimationConfig[] = [
     opacity: 1;
     transform: translateY(0);
   }
-}`,
+    }`,
     defaultDuration: 700,
     defaultDelay: 0,
-    defaultEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    defaultEasing: 'ease-out',
     defaultIterationCount: '1',
   },
   {
@@ -63,10 +63,10 @@ export const animationOptions: AnimationConfig[] = [
     opacity: 1;
     transform: translateY(0);
   }
-}`,
+    }`,
     defaultDuration: 700,
     defaultDelay: 0,
-    defaultEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+    defaultEasing: 'ease-out',
     defaultIterationCount: '1',
   },
   {
@@ -99,10 +99,10 @@ export const animationOptions: AnimationConfig[] = [
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
-}`,
+    }`,
     defaultDuration: 800,
     defaultDelay: 0,
-    defaultEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+    defaultEasing: 'ease-out',
     defaultIterationCount: '1',
   },
   {
@@ -139,8 +139,6 @@ export const timingOptions = [
   'ease-in',
   'ease-out',
   'ease-in-out',
-  'cubic-bezier(0.22, 1, 0.36, 1)',
-  'cubic-bezier(0.16, 1, 0.3, 1)',
 ];
 
 export function getAnimationKeyframesName(id: AnimationId) {
