@@ -59,16 +59,16 @@ export function PlaygroundPage() {
 
   return (
     <div className="space-y-8 pb-10 pt-8 sm:space-y-10 sm:pt-12">
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-4">
         <p className="text-sm font-semibold tracking-[0.24em] text-blue-700 uppercase">
           Animation playground
         </p>
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
+        <div className="max-w-5xl">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl xl:text-[4.35rem] xl:leading-[1.02]">
               Build and preview clean UI motion with 3xample
             </h1>
-            <p className="mt-4 text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl">
               Pick an animation, adjust the core settings, and inspect the generated CSS in a
               layout built for fast visual iteration.
             </p>
@@ -76,7 +76,7 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)] xl:grid-cols-[320px_minmax(0,1.2fr)_300px] 2xl:grid-cols-[340px_minmax(0,1.3fr)_320px]">
+      <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1.55fr)_280px] 2xl:grid-cols-[360px_minmax(0,1.7fr)_300px]">
         <AnimationList
           animations={animationOptions}
           selectedAnimationId={selectedAnimationId}
