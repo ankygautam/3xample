@@ -30,7 +30,7 @@ export function ControlPanel({
       <p className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">Controls</p>
       <h2 className="mt-2 text-2xl font-semibold text-slate-950">Adjust settings</h2>
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2">
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <button
           type="button"
           onClick={onReplay}
@@ -47,7 +47,7 @@ export function ControlPanel({
         </button>
       </div>
 
-      <div className="mt-7 space-y-6">
+      <div className="mt-6 space-y-5">
         <label className="block">
           <div className="mb-2 flex items-center justify-between text-sm font-medium text-slate-700">
             <span>Duration</span>

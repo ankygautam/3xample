@@ -27,8 +27,8 @@ export function PreviewPanel({
         </div>
       </div>
 
-      <div className="mt-8 rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,_rgba(248,250,252,0.9),_rgba(241,245,249,0.95))] p-4 sm:p-6">
-        <div className="grid min-h-[300px] place-items-center rounded-[1.75rem] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_34%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(241,245,249,0.92))] p-4 sm:min-h-[420px] sm:p-6">
+      <div className="mt-6 rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,_rgba(248,250,252,0.9),_rgba(241,245,249,0.95))] p-4 sm:p-6">
+        <div className="grid min-h-[300px] place-items-center rounded-[1.75rem] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_34%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(241,245,249,0.92))] p-4 sm:min-h-[390px] sm:p-6">
           <div
             key={previewKey}
             style={animationStyle}

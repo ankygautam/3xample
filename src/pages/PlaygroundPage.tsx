@@ -60,8 +60,8 @@ export function PlaygroundPage() {
   };
 
   return (
-    <div className="space-y-8 pb-10 pt-8 sm:space-y-10 sm:pt-12">
-      <section className="flex flex-col gap-4">
+    <div className="space-y-6 pb-10 pt-8 sm:space-y-8 sm:pt-12">
+      <section className="flex flex-col gap-3">
         <p className="text-sm font-semibold tracking-[0.24em] text-blue-700 uppercase">
           Animation playground
         </p>
@@ -78,7 +78,7 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1.75fr)_260px] 2xl:grid-cols-[360px_minmax(0,1.9fr)_280px]">
+      <section className="grid gap-5 lg:grid-cols-[292px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1.55fr)_272px] 2xl:grid-cols-[316px_minmax(0,1.68fr)_284px]">
         <AnimationList
           groups={animationGroups}
           selectedAnimationId={selectedAnimationId}
@@ -100,7 +100,7 @@ export function PlaygroundPage() {
           />
         </div>
 
-        <div className="min-w-0 lg:col-span-2 xl:col-span-1 xl:content-start">
+        <div className="min-w-0 lg:col-span-2 xl:col-span-1 xl:self-start">
           <ControlPanel
             duration={duration}
             delay={delay}
@@ -117,7 +117,7 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="hidden gap-6 md:grid lg:grid-cols-[320px_minmax(0,1fr)]">
+      <section className="hidden gap-5 md:grid md:-mt-1 lg:grid-cols-[292px_minmax(0,1fr)]">
         <div className="hidden lg:block" />
         <div className="min-w-0">
           <CodeOutputPanel css={generatedCss} />
