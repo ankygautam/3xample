@@ -31,13 +31,8 @@ export function PlaygroundPage() {
 
   const generatedCss = `${selectedAnimation.keyframes}
 
-.three-xample-demo {
-  animation-name: ${animationName};
-  animation-duration: ${duration}ms;
-  animation-timing-function: ${easing};
-  animation-delay: ${delay}ms;
-  animation-iteration-count: ${iterationCount};
-  animation-fill-mode: both;
+.animated-element {
+  animation: ${animationName} ${duration}ms ${easing} ${delay}ms ${iterationCount} both;
 }`;
 
   const applyAnimationDefaults = (animation: AnimationConfig) => {

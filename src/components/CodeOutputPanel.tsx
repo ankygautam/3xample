@@ -39,11 +39,16 @@ export function CodeOutputPanel({ css }: CodeOutputPanelProps) {
           onClick={handleCopy}
           className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
         >
-          {copied ? 'Copied Code' : 'Copy Code'}
+          {copied ? 'Copied' : 'Copy Code'}
         </button>
       </div>
 
-      <pre className="mt-6 overflow-x-auto rounded-[1.75rem] bg-slate-950 p-5 text-sm leading-7 text-slate-200">
+      <div className="mt-4 flex items-center justify-between rounded-[1.25rem] border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-medium text-slate-500">
+        <span>Live output updates from your current animation settings.</span>
+        {copied ? <span className="text-blue-700">Copied</span> : <span>Ready to paste</span>}
+      </div>
+
+      <pre className="mt-4 overflow-x-auto rounded-[1.75rem] border border-slate-800/80 bg-slate-950 p-5 font-mono text-sm leading-7 text-slate-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <code>{css}</code>
       </pre>
     </section>

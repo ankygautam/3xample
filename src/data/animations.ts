@@ -20,7 +20,7 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'fadeIn',
     name: 'Fade In',
-    keyframes: `@keyframes threeXampleFadeIn {
+    keyframes: `@keyframes three-xample-fade-in {
   0% {
     opacity: 0;
   }
@@ -36,7 +36,7 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'slideUp',
     name: 'Slide Up',
-    keyframes: `@keyframes threeXampleSlideUp {
+    keyframes: `@keyframes three-xample-slide-up {
   0% {
     opacity: 0;
     transform: translateY(26px);
@@ -45,7 +45,7 @@ export const animationOptions: AnimationConfig[] = [
     opacity: 1;
     transform: translateY(0);
   }
-    }`,
+}`,
     defaultDuration: 700,
     defaultDelay: 0,
     defaultEasing: 'ease-out',
@@ -54,7 +54,7 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'slideDown',
     name: 'Slide Down',
-    keyframes: `@keyframes threeXampleSlideDown {
+    keyframes: `@keyframes three-xample-slide-down {
   0% {
     opacity: 0;
     transform: translateY(-26px);
@@ -63,7 +63,7 @@ export const animationOptions: AnimationConfig[] = [
     opacity: 1;
     transform: translateY(0);
   }
-    }`,
+}`,
     defaultDuration: 700,
     defaultDelay: 0,
     defaultEasing: 'ease-out',
@@ -72,7 +72,7 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'scaleIn',
     name: 'Scale In',
-    keyframes: `@keyframes threeXampleScaleIn {
+    keyframes: `@keyframes three-xample-scale-in {
   0% {
     opacity: 0;
     transform: scale(0.84);
@@ -90,7 +90,7 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'rotateIn',
     name: 'Rotate In',
-    keyframes: `@keyframes threeXampleRotateIn {
+    keyframes: `@keyframes three-xample-rotate-in {
   0% {
     opacity: 0;
     transform: rotate(-8deg) scale(0.94);
@@ -99,7 +99,7 @@ export const animationOptions: AnimationConfig[] = [
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
-    }`,
+}`,
     defaultDuration: 800,
     defaultDelay: 0,
     defaultEasing: 'ease-out',
@@ -108,7 +108,7 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'bounce',
     name: 'Bounce',
-    keyframes: `@keyframes threeXampleBounce {
+    keyframes: `@keyframes three-xample-bounce {
   0%, 20%, 53%, 80%, 100% {
     transform: translateY(0);
   }
@@ -143,12 +143,12 @@ export const timingOptions = [
 
 export function getAnimationKeyframesName(id: AnimationId) {
   const keyframesNames: Record<AnimationId, string> = {
-    fadeIn: 'threeXampleFadeIn',
-    slideUp: 'threeXampleSlideUp',
-    slideDown: 'threeXampleSlideDown',
-    scaleIn: 'threeXampleScaleIn',
-    rotateIn: 'threeXampleRotateIn',
-    bounce: 'threeXampleBounce',
+    fadeIn: 'three-xample-fade-in',
+    slideUp: 'three-xample-slide-up',
+    slideDown: 'three-xample-slide-down',
+    scaleIn: 'three-xample-scale-in',
+    rotateIn: 'three-xample-rotate-in',
+    bounce: 'three-xample-bounce',
   };
 
   return keyframesNames[id];
