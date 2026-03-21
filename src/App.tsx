@@ -1,7 +1,9 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
+import { DocsLayout } from './components/docs/DocsLayout';
 import { HomePage } from './pages/HomePage';
+import { DocsPage } from './pages/DocsPage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { animationOptions } from './data/animations';
 
@@ -14,6 +16,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
+          <Route path="/docs" element={<DocsLayout />}>
+            <Route index element={<Navigate to="introduction" replace />} />
+            <Route path=":slug" element={<DocsPage />} />
+          </Route>
         </Routes>
       </main>
       <Footer />

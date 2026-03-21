@@ -18,30 +18,30 @@ export function PreviewPanel({
           <p className="text-sm font-semibold tracking-[0.18em] text-slate-500 uppercase">
             Live Preview
           </p>
-          <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-950 sm:text-[2.4rem]">
+          <h2 className="mt-2 text-[2rem] font-semibold tracking-tight text-slate-950 sm:text-[2.4rem]">
             {animationName}
           </h2>
         </div>
-        <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600">
+        <div className="max-w-full rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600">
           Selected animation: {animationName}
         </div>
       </div>
 
       <div className="mt-8 rounded-[2rem] border border-slate-200 bg-[linear-gradient(180deg,_rgba(248,250,252,0.9),_rgba(241,245,249,0.95))] p-4 sm:p-6">
-        <div className="grid min-h-[360px] place-items-center rounded-[1.75rem] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_34%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(241,245,249,0.92))] p-6 sm:min-h-[420px]">
+        <div className="grid min-h-[300px] place-items-center rounded-[1.75rem] bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.18),_transparent_34%),linear-gradient(135deg,_rgba(255,255,255,0.98),_rgba(241,245,249,0.92))] p-4 sm:min-h-[420px] sm:p-6">
           <div
             key={previewKey}
             style={animationStyle}
-            className="w-full max-w-md rounded-[1.75rem] border border-slate-200 bg-white p-7 shadow-lift"
+            className="w-full max-w-md rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-lift sm:p-7"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold text-blue-700">Preview card</p>
-                <h3 className="mt-2 text-2xl font-semibold tracking-tight text-slate-950">
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950 sm:text-2xl">
                   3xample motion demo
                 </h3>
               </div>
-              <div className="h-12 w-12 rounded-2xl bg-slate-950" />
+              <div className="h-10 w-10 rounded-2xl bg-slate-950 sm:h-12 sm:w-12" />
             </div>
 
             <p className="mt-5 text-sm leading-7 text-slate-600">

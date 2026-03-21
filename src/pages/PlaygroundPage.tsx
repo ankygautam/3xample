@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { AnimationList } from '../components/AnimationList';
 import { CodeOutputPanel } from '../components/CodeOutputPanel';
 import { ControlPanel } from '../components/ControlPanel';
+import { MobileUsagePanel } from '../components/MobileUsagePanel';
 import { PreviewPanel } from '../components/PreviewPanel';
 import {
   animationLookup,
+  animationGroups,
   animationOptions,
   getAnimationKeyframesName,
   timingOptions,
@@ -65,10 +67,10 @@ export function PlaygroundPage() {
         </p>
         <div className="max-w-5xl">
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl xl:text-[4.35rem] xl:leading-[1.02]">
+            <h1 className="text-[2.35rem] font-semibold tracking-tight text-slate-950 sm:text-5xl xl:text-[4.35rem] xl:leading-[1.02]">
               Build and preview clean UI motion with 3xample
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl">
+            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600 sm:mt-5 sm:text-xl sm:leading-8">
               Pick an animation, adjust the core settings, and inspect the generated CSS in a
               layout built for fast visual iteration.
             </p>
@@ -78,18 +80,27 @@ export function PlaygroundPage() {
 
       <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1.75fr)_260px] 2xl:grid-cols-[360px_minmax(0,1.9fr)_280px]">
         <AnimationList
-          animations={animationOptions}
+          groups={animationGroups}
           selectedAnimationId={selectedAnimationId}
           onSelect={handleAnimationSelect}
         />
 
-        <PreviewPanel
+        <MobileUsagePanel
           animationName={selectedAnimation.name}
           animationStyle={animationStyle}
           previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
+          css={generatedCss}
         />
 
-        <div className="lg:col-span-2 xl:col-span-1 xl:content-start">
+        <div className="hidden md:block">
+          <PreviewPanel
+            animationName={selectedAnimation.name}
+            animationStyle={animationStyle}
+            previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
+          />
+        </div>
+
+        <div className="min-w-0 lg:col-span-2 xl:col-span-1 xl:content-start">
           <ControlPanel
             duration={duration}
             delay={delay}
@@ -106,9 +117,11 @@ export function PlaygroundPage() {
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+      <section className="hidden gap-6 md:grid lg:grid-cols-[320px_minmax(0,1fr)]">
         <div className="hidden lg:block" />
-        <CodeOutputPanel css={generatedCss} />
+        <div className="min-w-0">
+          <CodeOutputPanel css={generatedCss} />
+        </div>
       </section>
     </div>
   );

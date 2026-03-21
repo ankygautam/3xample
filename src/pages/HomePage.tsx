@@ -6,8 +6,9 @@ const previewAnimations = [
     eyebrow: 'Entrance',
     title: 'Launch polished reveals',
     description: 'Preview smooth intro motion for product cards, CTAs, and onboarding UI.',
+    demoVariant: 'entrance' as const,
     animationStyle: {
-      animation: 'three-xample-fade-in 0.9s ease-out both',
+      animation: 'three-xample-fade-up 0.9s ease-out both',
     },
     accentClassName: 'from-blue-500/15 via-white to-sky-400/20',
   },
@@ -15,8 +16,9 @@ const previewAnimations = [
     eyebrow: 'Loop',
     title: 'Add subtle floating depth',
     description: 'Create micro-motions that feel premium without overpowering the interface.',
+    demoVariant: 'loop' as const,
     animationStyle: {
-      animation: 'three-xample-slide-up 0.85s ease-out both',
+      animation: 'three-xample-lift 1.2s ease-in-out infinite',
     },
     accentClassName: 'from-cyan-500/15 via-white to-emerald-400/20',
   },
@@ -24,6 +26,7 @@ const previewAnimations = [
     eyebrow: 'Highlight',
     title: 'Emphasize key moments',
     description: 'Use glow and pulse patterns to draw attention to status updates or feature chips.',
+    demoVariant: 'highlight' as const,
     animationStyle: {
       animation: 'three-xample-bounce 1.4s ease infinite',
     },

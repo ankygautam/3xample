@@ -1,14 +1,46 @@
+export type AnimationCategory = 'Entrance' | 'Emphasis' | 'Exit' | 'Hover';
+
 export type AnimationId =
-  | 'fadeIn'
-  | 'slideUp'
-  | 'slideDown'
+  | 'fadeUp'
+  | 'fadeDown'
+  | 'fadeLeft'
+  | 'fadeRight'
+  | 'slideIn'
   | 'scaleIn'
-  | 'rotateIn'
-  | 'bounce';
+  | 'zoomIn'
+  | 'popIn'
+  | 'riseIn'
+  | 'dropIn'
+  | 'bounce'
+  | 'pulse'
+  | 'pulseSoft'
+  | 'wiggle'
+  | 'shake'
+  | 'nudge'
+  | 'flash'
+  | 'swing'
+  | 'fadeOut'
+  | 'fadeUpOut'
+  | 'fadeDownOut'
+  | 'slideOut'
+  | 'slideLeftOut'
+  | 'slideRightOut'
+  | 'scaleOut'
+  | 'zoomOut'
+  | 'lift'
+  | 'liftSoft'
+  | 'glow'
+  | 'glowSoft'
+  | 'tilt'
+  | 'tiltLeft'
+  | 'tiltRight'
+  | 'scaleHover'
+  | 'shadowPop';
 
 export type AnimationConfig = {
   id: AnimationId;
   name: string;
+  category: AnimationCategory;
   keyframes: string;
   defaultDuration: number;
   defaultDelay: number;
@@ -16,16 +48,24 @@ export type AnimationConfig = {
   defaultIterationCount: string;
 };
 
+export type AnimationGroup = {
+  category: AnimationCategory;
+  animations: AnimationConfig[];
+};
+
 export const animationOptions: AnimationConfig[] = [
   {
-    id: 'fadeIn',
-    name: 'Fade In',
-    keyframes: `@keyframes three-xample-fade-in {
+    id: 'fadeUp',
+    name: 'Fade Up',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-fade-up {
   0% {
     opacity: 0;
+    transform: translateY(18px);
   }
   100% {
     opacity: 1;
+    transform: translateY(0);
   }
 }`,
     defaultDuration: 650,
@@ -34,34 +74,74 @@ export const animationOptions: AnimationConfig[] = [
     defaultIterationCount: '1',
   },
   {
-    id: 'slideUp',
-    name: 'Slide Up',
-    keyframes: `@keyframes three-xample-slide-up {
+    id: 'fadeDown',
+    name: 'Fade Down',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-fade-down {
   0% {
     opacity: 0;
-    transform: translateY(26px);
+    transform: translateY(-18px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
   }
 }`,
-    defaultDuration: 700,
+    defaultDuration: 650,
     defaultDelay: 0,
     defaultEasing: 'ease-out',
     defaultIterationCount: '1',
   },
   {
-    id: 'slideDown',
-    name: 'Slide Down',
-    keyframes: `@keyframes three-xample-slide-down {
+    id: 'fadeLeft',
+    name: 'Fade Left',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-fade-left {
   0% {
     opacity: 0;
-    transform: translateY(-26px);
+    transform: translateX(18px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
+  }
+}`,
+    defaultDuration: 650,
+    defaultDelay: 0,
+    defaultEasing: 'ease-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'fadeRight',
+    name: 'Fade Right',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-fade-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}`,
+    defaultDuration: 650,
+    defaultDelay: 0,
+    defaultEasing: 'ease-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'slideIn',
+    name: 'Slide In',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }`,
     defaultDuration: 700,
@@ -72,10 +152,11 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'scaleIn',
     name: 'Scale In',
+    category: 'Entrance',
     keyframes: `@keyframes three-xample-scale-in {
   0% {
     opacity: 0;
-    transform: scale(0.84);
+    transform: scale(0.9);
   }
   100% {
     opacity: 1;
@@ -88,19 +169,81 @@ export const animationOptions: AnimationConfig[] = [
     defaultIterationCount: '1',
   },
   {
-    id: 'rotateIn',
-    name: 'Rotate In',
-    keyframes: `@keyframes three-xample-rotate-in {
+    id: 'zoomIn',
+    name: 'Zoom In',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-zoom-in {
   0% {
     opacity: 0;
-    transform: rotate(-8deg) scale(0.94);
+    transform: scale(0.78);
   }
   100% {
     opacity: 1;
-    transform: rotate(0deg) scale(1);
+    transform: scale(1);
   }
 }`,
-    defaultDuration: 800,
+    defaultDuration: 680,
+    defaultDelay: 0,
+    defaultEasing: 'ease-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'popIn',
+    name: 'Pop In',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}`,
+    defaultDuration: 560,
+    defaultDelay: 0,
+    defaultEasing: 'ease-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'riseIn',
+    name: 'Rise In',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-rise-in {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}`,
+    defaultDuration: 720,
+    defaultDelay: 0,
+    defaultEasing: 'ease-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'dropIn',
+    name: 'Drop In',
+    category: 'Entrance',
+    keyframes: `@keyframes three-xample-drop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}`,
+    defaultDuration: 720,
     defaultDelay: 0,
     defaultEasing: 'ease-out',
     defaultIterationCount: '1',
@@ -108,23 +251,483 @@ export const animationOptions: AnimationConfig[] = [
   {
     id: 'bounce',
     name: 'Bounce',
+    category: 'Emphasis',
     keyframes: `@keyframes three-xample-bounce {
   0%, 20%, 53%, 80%, 100% {
     transform: translateY(0);
   }
   40%, 43% {
-    transform: translateY(-18px);
+    transform: translateY(-14px);
   }
   70% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
   90% {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+  }
+}`,
+    defaultDuration: 900,
+    defaultDelay: 0,
+    defaultEasing: 'ease',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'pulse',
+    name: 'Pulse',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.84;
+  }
+}`,
+    defaultDuration: 900,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'pulseSoft',
+    name: 'Pulse Soft',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-pulse-soft {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.025);
+    opacity: 0.92;
+  }
+}`,
+    defaultDuration: 1100,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'wiggle',
+    name: 'Wiggle',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}`,
+    defaultDuration: 650,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'shake',
+    name: 'Shake',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}`,
+    defaultDuration: 650,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'nudge',
+    name: 'Nudge',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-nudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(6px);
+  }
+  65% {
+    transform: translateX(-3px);
+  }
+}`,
+    defaultDuration: 520,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'flash',
+    name: 'Flash',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-flash {
+  0%, 100% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.42;
+  }
+}`,
+    defaultDuration: 600,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'swing',
+    name: 'Swing',
+    category: 'Emphasis',
+    keyframes: `@keyframes three-xample-swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}`,
+    defaultDuration: 760,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'fadeOut',
+    name: 'Fade Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}`,
+    defaultDuration: 550,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'fadeUpOut',
+    name: 'Fade Up Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-fade-up-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+}`,
+    defaultDuration: 560,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'fadeDownOut',
+    name: 'Fade Down Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-fade-down-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}`,
+    defaultDuration: 560,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'slideOut',
+    name: 'Slide Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-slide-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}`,
+    defaultDuration: 600,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'slideLeftOut',
+    name: 'Slide Left Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-slide-left-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}`,
+    defaultDuration: 600,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'slideRightOut',
+    name: 'Slide Right Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-slide-right-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}`,
+    defaultDuration: 600,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'scaleOut',
+    name: 'Scale Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-scale-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}`,
+    defaultDuration: 520,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'zoomOut',
+    name: 'Zoom Out',
+    category: 'Exit',
+    keyframes: `@keyframes three-xample-zoom-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}`,
+    defaultDuration: 560,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in',
+    defaultIterationCount: '1',
+  },
+  {
+    id: 'lift',
+    name: 'Lift',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-lift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }`,
     defaultDuration: 1200,
     defaultDelay: 0,
-    defaultEasing: 'ease',
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'liftSoft',
+    name: 'Lift Soft',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-lift-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}`,
+    defaultDuration: 1400,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'glow',
+    name: 'Glow',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+    filter: saturate(1);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(59, 130, 246, 0.28);
+    filter: saturate(1.08);
+  }
+}`,
+    defaultDuration: 1500,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'glowSoft',
+    name: 'Glow Soft',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-glow-soft {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+    filter: saturate(1);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.16);
+    filter: saturate(1.04);
+  }
+}`,
+    defaultDuration: 1600,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'tilt',
+    name: 'Tilt',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-tilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}`,
+    defaultDuration: 950,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'tiltLeft',
+    name: 'Tilt Left',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-tilt-left {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+}`,
+    defaultDuration: 900,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'tiltRight',
+    name: 'Tilt Right',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-tilt-right {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}`,
+    defaultDuration: 900,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'scaleHover',
+    name: 'Scale Hover',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-scale-hover {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}`,
+    defaultDuration: 1100,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
+    defaultIterationCount: 'infinite',
+  },
+  {
+    id: 'shadowPop',
+    name: 'Shadow Pop',
+    category: 'Hover',
+    keyframes: `@keyframes three-xample-shadow-pop {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  }
+  50% {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.14);
+  }
+}`,
+    defaultDuration: 1200,
+    defaultDelay: 0,
+    defaultEasing: 'ease-in-out',
     defaultIterationCount: 'infinite',
   },
 ];
@@ -133,22 +736,64 @@ export const animationLookup = Object.fromEntries(
   animationOptions.map((animation) => [animation.id, animation]),
 ) as Record<AnimationId, AnimationConfig>;
 
-export const timingOptions = [
-  'ease',
-  'linear',
-  'ease-in',
-  'ease-out',
-  'ease-in-out',
+export const animationGroups: AnimationGroup[] = [
+  {
+    category: 'Entrance',
+    animations: animationOptions.filter((animation) => animation.category === 'Entrance'),
+  },
+  {
+    category: 'Emphasis',
+    animations: animationOptions.filter((animation) => animation.category === 'Emphasis'),
+  },
+  {
+    category: 'Exit',
+    animations: animationOptions.filter((animation) => animation.category === 'Exit'),
+  },
+  {
+    category: 'Hover',
+    animations: animationOptions.filter((animation) => animation.category === 'Hover'),
+  },
 ];
+
+export const timingOptions = ['ease', 'linear', 'ease-in', 'ease-out', 'ease-in-out'];
 
 export function getAnimationKeyframesName(id: AnimationId) {
   const keyframesNames: Record<AnimationId, string> = {
-    fadeIn: 'three-xample-fade-in',
-    slideUp: 'three-xample-slide-up',
-    slideDown: 'three-xample-slide-down',
+    fadeUp: 'three-xample-fade-up',
+    fadeDown: 'three-xample-fade-down',
+    fadeLeft: 'three-xample-fade-left',
+    fadeRight: 'three-xample-fade-right',
+    slideIn: 'three-xample-slide-in',
     scaleIn: 'three-xample-scale-in',
-    rotateIn: 'three-xample-rotate-in',
+    zoomIn: 'three-xample-zoom-in',
+    popIn: 'three-xample-pop-in',
+    riseIn: 'three-xample-rise-in',
+    dropIn: 'three-xample-drop-in',
     bounce: 'three-xample-bounce',
+    pulse: 'three-xample-pulse',
+    pulseSoft: 'three-xample-pulse-soft',
+    wiggle: 'three-xample-wiggle',
+    shake: 'three-xample-shake',
+    nudge: 'three-xample-nudge',
+    flash: 'three-xample-flash',
+    swing: 'three-xample-swing',
+    fadeOut: 'three-xample-fade-out',
+    fadeUpOut: 'three-xample-fade-up-out',
+    fadeDownOut: 'three-xample-fade-down-out',
+    slideOut: 'three-xample-slide-out',
+    slideLeftOut: 'three-xample-slide-left-out',
+    slideRightOut: 'three-xample-slide-right-out',
+    scaleOut: 'three-xample-scale-out',
+    zoomOut: 'three-xample-zoom-out',
+    lift: 'three-xample-lift',
+    liftSoft: 'three-xample-lift-soft',
+    glow: 'three-xample-glow',
+    glowSoft: 'three-xample-glow-soft',
+    tilt: 'three-xample-tilt',
+    tiltLeft: 'three-xample-tilt-left',
+    tiltRight: 'three-xample-tilt-right',
+    scaleHover: 'three-xample-scale-hover',
+    shadowPop: 'three-xample-shadow-pop',
   };
 
   return keyframesNames[id];
