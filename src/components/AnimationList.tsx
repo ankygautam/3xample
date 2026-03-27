@@ -5,11 +5,23 @@ import type {
   AnimationGroup,
   AnimationId,
 } from '../data/animations';
+import { animationCategories } from '../data/animations';
+import { CategoryFilterBar } from './CategoryFilterBar';
+import { EmptyState } from './EmptyState';
+import { PlaygroundSearch } from './PlaygroundSearch';
+import { SidebarHeader } from './ui/SidebarHeader';
+import { SidebarShell } from './ui/SidebarShell';
+import { SidebarPresetItem } from './ui/SidebarPresetItem';
+import { SidebarSection } from './ui/SidebarSection';
+
+type SidebarFilter = 'All' | 'Favorites' | AnimationCategory;
 
 type AnimationListProps = {
   groups: AnimationGroup[];
   selectedAnimationId: AnimationId;
   onSelect: (animation: AnimationConfig) => void;
+  favorites: AnimationId[];
+  onToggleFavorite: (animationId: AnimationId) => void;
 };
 
 function getInitialExpandedState(groups: AnimationGroup[]) {
@@ -19,10 +31,18 @@ function getInitialExpandedState(groups: AnimationGroup[]) {
   >;
 }
 
-export function AnimationList({ groups, selectedAnimationId, onSelect }: AnimationListProps) {
+export function AnimationList({
+  groups,
+  selectedAnimationId,
+  onSelect,
+  favorites,
+  onToggleFavorite,
+}: AnimationListProps) {
   const [expandedGroups, setExpandedGroups] = useState<Record<AnimationCategory, boolean>>(
     getInitialExpandedState(groups),
   );
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState<SidebarFilter>('All');
 
   useEffect(() => {
     const selectedGroup = groups.find((group) =>
@@ -46,84 +66,92 @@ export function AnimationList({ groups, selectedAnimationId, onSelect }: Animati
     }));
   };
 
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  const filteredGroups = groups
+    .filter((group) => activeFilter === 'All' || activeFilter === 'Favorites' || group.category === activeFilter)
+    .map((group) => ({
+      ...group,
+      animations: group.animations.filter((animation) => {
+        const matchesSearch = normalizedQuery
+          ? animation.name.toLowerCase().includes(normalizedQuery)
+          : true;
+        const matchesFavorites = activeFilter === 'Favorites' ? favorites.includes(animation.id) : true;
+
+        return matchesSearch && matchesFavorites;
+      }),
+    }))
+    .filter((group) => group.animations.length > 0);
+
+  const visibleCount = filteredGroups.reduce((total, group) => total + group.animations.length, 0);
+  const favoriteCount = favorites.length;
+
+  const emptyState =
+    activeFilter === 'Favorites' && favoriteCount === 0
+      ? {
+          title: 'No favorites yet',
+          description: 'Star presets you want to revisit quickly.',
+        }
+      : {
+          title: 'No animations found for this search',
+          description: 'Try a different keyword or reset the current filter.',
+        };
+
   return (
-    <aside className="self-start overflow-hidden rounded-[1.7rem] border border-slate-800/80 bg-[radial-gradient(circle_at_top,_rgba(29,78,216,0.14),_rgba(2,6,23,0.98)_28%),linear-gradient(180deg,_rgba(15,23,42,0.98),_rgba(2,6,23,1))] text-slate-100 shadow-[0_18px_40px_rgba(2,6,23,0.18)] xl:sticky xl:top-24 xl:max-h-[calc(100vh-6.75rem)]">
-      <div className="border-b border-white/10 px-4 py-4 sm:px-5">
-        <p className="text-[0.68rem] font-semibold tracking-[0.28em] text-slate-500 uppercase">
-          Navigation
-        </p>
-        <h2 className="mt-2.5 text-base font-semibold tracking-tight text-white">
-          Animation presets
-        </h2>
+    <SidebarShell className="xl:sticky xl:top-24 xl:max-h-[calc(100vh-6.75rem)]">
+      <SidebarHeader
+        visibleCount={visibleCount}
+        favoriteCount={favoriteCount}
+        favoritesMode={activeFilter === 'Favorites'}
+      />
+
+      <div className="relative px-4 py-4 sm:px-5">
+        <div className="space-y-3 pb-3">
+          <PlaygroundSearch value={searchQuery} onChange={setSearchQuery} />
+          <CategoryFilterBar
+            options={['All', 'Favorites', ...animationCategories]}
+            active={activeFilter}
+            onChange={(value) => setActiveFilter(value as SidebarFilter)}
+          />
+        </div>
       </div>
 
-      <div className="max-h-[24rem] overflow-y-auto px-4 py-3.5 sm:px-5 xl:max-h-[calc(100vh-11rem)]">
-        <nav aria-label="Animation presets" className="space-y-3.5">
-          {groups.map((group) => {
-            const isExpanded = expandedGroups[group.category];
+      <div className="relative max-h-[24rem] overflow-y-auto px-4 pb-4 sm:px-5 xl:max-h-[calc(100vh-22rem)] [scrollbar-color:rgba(100,116,139,0.35)_transparent] [scrollbar-width:thin]">
+        <div className="pointer-events-none sticky top-0 z-10 -mx-1 h-5 bg-gradient-to-b from-[#030712] to-transparent" />
 
-            return (
-              <div key={group.category}>
-                <button
-                  type="button"
-                  onClick={() => toggleGroup(group.category)}
-                  className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-1.5 text-left transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70"
+        {filteredGroups.length === 0 ? (
+          <EmptyState title={emptyState.title} description={emptyState.description} tone="dark" />
+        ) : (
+          <nav aria-label="Animation presets" className="space-y-3">
+            {filteredGroups.map((group) => {
+              const isExpanded = expandedGroups[group.category];
+
+              return (
+                <SidebarSection
+                  key={group.category}
+                  label={group.category}
+                  shortLabel={group.category.slice(0, 2).toUpperCase()}
+                  expanded={isExpanded}
+                  onToggle={() => toggleGroup(group.category)}
                 >
-                  <span className="text-[0.92rem] font-semibold tracking-tight text-slate-100">
-                    {group.category}
-                  </span>
-                  <span
-                    className={`inline-flex h-7 w-7 items-center justify-center rounded-full text-slate-500 transition ${
-                      isExpanded ? 'rotate-180' : ''
-                    }`}
-                  >
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 12 12"
-                      className="h-3.5 w-3.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M2.5 4.5 6 8l3.5-3.5" />
-                    </svg>
-                  </span>
-                </button>
+                  {group.animations.map((animation) => (
+                    <SidebarPresetItem
+                      key={animation.id}
+                      label={animation.name}
+                      active={animation.id === selectedAnimationId}
+                      favorite={favorites.includes(animation.id)}
+                      onClick={() => onSelect(animation)}
+                      onToggleFavorite={() => onToggleFavorite(animation.id)}
+                    />
+                  ))}
+                </SidebarSection>
+              );
+            })}
+          </nav>
+        )}
 
-                {isExpanded ? (
-                  <div className="ml-2 mt-1.5 space-y-0.5 border-l border-white/8 pl-3">
-                    {group.animations.map((animation) => {
-                      const isActive = animation.id === selectedAnimationId;
-
-                      return (
-                        <button
-                          key={animation.id}
-                          type="button"
-                          onClick={() => onSelect(animation)}
-                          className={`group flex w-full items-center gap-3 rounded-xl px-3 py-1.5 text-left text-[0.92rem] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/70 ${
-                            isActive
-                              ? 'bg-blue-500/12 text-white'
-                              : 'text-slate-400 hover:bg-white/[0.03] hover:text-slate-200'
-                          }`}
-                        >
-                          <span
-                            className={`h-1.5 w-1.5 rounded-full transition ${
-                              isActive ? 'bg-blue-400' : 'bg-slate-600 group-hover:bg-slate-400'
-                            }`}
-                          />
-                          <span className="block font-medium">{animation.name}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
-        </nav>
+        <div className="pointer-events-none sticky bottom-0 z-10 -mx-1 h-8 bg-gradient-to-t from-[#020617] to-transparent" />
       </div>
-    </aside>
+    </SidebarShell>
   );
 }

@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimationList } from '../components/AnimationList';
 import { CodeOutputPanel } from '../components/CodeOutputPanel';
+import { type CodeTabId } from '../components/CodeTabs';
 import { ControlPanel } from '../components/ControlPanel';
 import { MobileUsagePanel } from '../components/MobileUsagePanel';
 import { PreviewPanel } from '../components/PreviewPanel';
 import {
   animationLookup,
+  buildAnimationCss,
+  buildReactExample,
+  buildTailwindExample,
   animationGroups,
   animationOptions,
   getAnimationKeyframesName,
@@ -15,6 +19,7 @@ import {
 } from '../data/animations';
 
 const initialAnimation = animationOptions[0];
+const favoritesStorageKey = 'three-xample-favorites';
 
 export function PlaygroundPage() {
   const [selectedAnimationId, setSelectedAnimationId] = useState<AnimationId>(initialAnimation.id);
@@ -23,19 +28,52 @@ export function PlaygroundPage() {
   const [easing, setEasing] = useState(initialAnimation.defaultEasing);
   const [iterationCount, setIterationCount] = useState(initialAnimation.defaultIterationCount);
   const [replayCount, setReplayCount] = useState(0);
+  const [favorites, setFavorites] = useState<AnimationId[]>([]);
+  const [activeTab, setActiveTab] = useState<CodeTabId>('preview');
 
   const selectedAnimation = animationLookup[selectedAnimationId];
-  const animationName = getAnimationKeyframesName(selectedAnimation.id);
-
-  const animationStyle = {
-    animation: `${animationName} ${duration}ms ${easing} ${delay}ms ${iterationCount} both`,
+  const animationKeyframesName = getAnimationKeyframesName(selectedAnimation.id);
+  const runtimeOptions = {
+    duration,
+    delay,
+    easing,
+    iterationCount,
   };
 
-  const generatedCss = `${selectedAnimation.keyframes}
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
 
-.animated-element {
-  animation: ${animationName} ${duration}ms ${easing} ${delay}ms ${iterationCount} both;
-}`;
+    const storedValue = window.localStorage.getItem(favoritesStorageKey);
+
+    if (!storedValue) {
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(storedValue) as AnimationId[];
+      setFavorites(parsed);
+    } catch (error) {
+      console.error('Unable to parse stored favorites', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.localStorage.setItem(favoritesStorageKey, JSON.stringify(favorites));
+  }, [favorites]);
+
+  const animationStyle = {
+    animation: `${animationKeyframesName} ${duration}ms ${easing} ${delay}ms ${iterationCount} both`,
+  };
+
+  const generatedCss = buildAnimationCss(selectedAnimation, runtimeOptions);
+  const tailwindExample = buildTailwindExample(selectedAnimation, runtimeOptions);
+  const reactExample = buildReactExample(selectedAnimation, runtimeOptions);
 
   const applyAnimationDefaults = (animation: AnimationConfig) => {
     setDuration(animation.defaultDuration);
@@ -57,6 +95,14 @@ export function PlaygroundPage() {
   const handleReset = () => {
     applyAnimationDefaults(selectedAnimation);
     setReplayCount((current) => current + 1);
+  };
+
+  const handleToggleFavorite = (animationId: AnimationId) => {
+    setFavorites((current) =>
+      current.includes(animationId)
+        ? current.filter((item) => item !== animationId)
+        : [...current, animationId],
+    );
   };
 
   return (
@@ -83,15 +129,25 @@ export function PlaygroundPage() {
           groups={animationGroups}
           selectedAnimationId={selectedAnimationId}
           onSelect={handleAnimationSelect}
+          favorites={favorites}
+          onToggleFavorite={handleToggleFavorite}
         />
       </section>
 
       <section className="md:hidden">
         <MobileUsagePanel
           animationName={selectedAnimation.name}
+          animationCategory={selectedAnimation.category}
+          description={selectedAnimation.description}
+          recommendedFor={selectedAnimation.recommendedFor}
+          intensity={selectedAnimation.intensity}
           animationStyle={animationStyle}
           previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
           css={generatedCss}
+          tailwindExample={tailwindExample}
+          reactExample={reactExample}
         />
       </section>
 
@@ -101,14 +157,25 @@ export function PlaygroundPage() {
             groups={animationGroups}
             selectedAnimationId={selectedAnimationId}
             onSelect={handleAnimationSelect}
+            favorites={favorites}
+            onToggleFavorite={handleToggleFavorite}
           />
         </div>
 
         <div className="min-w-0">
           <PreviewPanel
             animationName={selectedAnimation.name}
+            animationCategory={selectedAnimation.category}
+            description={selectedAnimation.description}
+            recommendedFor={selectedAnimation.recommendedFor}
+            intensity={selectedAnimation.intensity}
             animationStyle={animationStyle}
             previewKey={`${selectedAnimationId}-${duration}-${delay}-${easing}-${iterationCount}-${replayCount}`}
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            css={generatedCss}
+            tailwindExample={tailwindExample}
+            reactExample={reactExample}
           />
         </div>
 

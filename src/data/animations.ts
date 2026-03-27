@@ -1,4 +1,5 @@
 export type AnimationCategory = 'Entrance' | 'Emphasis' | 'Exit' | 'Hover';
+export type AnimationIntensity = 'Subtle' | 'Medium' | 'Strong';
 
 export type AnimationId =
   | 'fadeUp'
@@ -41,6 +42,9 @@ export type AnimationConfig = {
   id: AnimationId;
   name: string;
   category: AnimationCategory;
+  description: string;
+  recommendedFor: string;
+  intensity: AnimationIntensity;
   keyframes: string;
   defaultDuration: number;
   defaultDelay: number;
@@ -48,12 +52,14 @@ export type AnimationConfig = {
   defaultIterationCount: string;
 };
 
+type BaseAnimationConfig = Omit<AnimationConfig, 'description' | 'recommendedFor' | 'intensity'>;
+
 export type AnimationGroup = {
   category: AnimationCategory;
   animations: AnimationConfig[];
 };
 
-export const animationOptions: AnimationConfig[] = [
+const baseAnimationOptions: BaseAnimationConfig[] = [
   {
     id: 'fadeUp',
     name: 'Fade Up',
@@ -732,9 +738,202 @@ export const animationOptions: AnimationConfig[] = [
   },
 ];
 
+const animationMetadata: Record<
+  AnimationId,
+  Pick<AnimationConfig, 'description' | 'recommendedFor' | 'intensity'>
+> = {
+  fadeUp: {
+    description: 'A clean upward fade that introduces UI blocks with soft vertical motion.',
+    recommendedFor: 'Best for cards and stacked content',
+    intensity: 'Subtle',
+  },
+  fadeDown: {
+    description: 'A gentle top-down reveal for headers, banners, and compact interface rows.',
+    recommendedFor: 'Best for hero content',
+    intensity: 'Subtle',
+  },
+  fadeLeft: {
+    description: 'A horizontal fade that feels polished on supporting labels and side content.',
+    recommendedFor: 'Best for side panels',
+    intensity: 'Subtle',
+  },
+  fadeRight: {
+    description: 'A soft right-origin reveal that keeps directional motion calm and readable.',
+    recommendedFor: 'Best for supporting UI',
+    intensity: 'Subtle',
+  },
+  slideIn: {
+    description: 'A crisp entrance with stronger movement for drawers and list panels.',
+    recommendedFor: 'Best for panels and menus',
+    intensity: 'Medium',
+  },
+  scaleIn: {
+    description: 'A compact scale reveal that helps product cards feel responsive and premium.',
+    recommendedFor: 'Best for cards',
+    intensity: 'Subtle',
+  },
+  zoomIn: {
+    description: 'A more noticeable scale reveal designed for featured moments and focal UI.',
+    recommendedFor: 'Best for hero content',
+    intensity: 'Medium',
+  },
+  popIn: {
+    description: 'A quick overshoot entrance that adds a little energy without feeling playful.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Medium',
+  },
+  riseIn: {
+    description: 'A deeper upward entrance useful for blocks that need a bit more presence.',
+    recommendedFor: 'Good for onboarding panels',
+    intensity: 'Medium',
+  },
+  dropIn: {
+    description: 'A top-origin reveal that lands neatly for banners, toasts, and alert surfaces.',
+    recommendedFor: 'Good for alerts',
+    intensity: 'Medium',
+  },
+  bounce: {
+    description: 'A classic emphasis bounce that highlights selected elements with clear motion.',
+    recommendedFor: 'Best for feature highlights',
+    intensity: 'Strong',
+  },
+  pulse: {
+    description: 'A scale-and-opacity pulse for drawing attention without changing layout.',
+    recommendedFor: 'Best for badges',
+    intensity: 'Medium',
+  },
+  pulseSoft: {
+    description: 'A softer pulse that works well for status cues and subtle emphasis.',
+    recommendedFor: 'Good for alerts',
+    intensity: 'Subtle',
+  },
+  wiggle: {
+    description: 'A restrained rotate-based emphasis for playful-but-still-product UI moments.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Medium',
+  },
+  shake: {
+    description: 'A directional shake suited for warnings, validation, and attention cues.',
+    recommendedFor: 'Good for alerts',
+    intensity: 'Strong',
+  },
+  nudge: {
+    description: 'A compact lateral nudge that helps prompts and helper actions stand out.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Subtle',
+  },
+  flash: {
+    description: 'A quick opacity-based emphasis for labels, tags, and compact status UI.',
+    recommendedFor: 'Best for badges',
+    intensity: 'Medium',
+  },
+  swing: {
+    description: 'A rotational emphasis that adds character to feature chips and callouts.',
+    recommendedFor: 'Best for feature highlights',
+    intensity: 'Medium',
+  },
+  fadeOut: {
+    description: 'A clean fade away for dismissing elements without abrupt movement.',
+    recommendedFor: 'Best for alerts',
+    intensity: 'Subtle',
+  },
+  fadeUpOut: {
+    description: 'An upward fade-out that feels natural for stacked content leaving view.',
+    recommendedFor: 'Best for cards',
+    intensity: 'Subtle',
+  },
+  fadeDownOut: {
+    description: 'A downward dismiss transition useful for temporary notifications and banners.',
+    recommendedFor: 'Good for alerts',
+    intensity: 'Subtle',
+  },
+  slideOut: {
+    description: 'A directional exit with more presence for panels, drawers, and flyouts.',
+    recommendedFor: 'Best for panels and menus',
+    intensity: 'Medium',
+  },
+  slideLeftOut: {
+    description: 'A leftward dismiss motion for side content and off-canvas style elements.',
+    recommendedFor: 'Best for side panels',
+    intensity: 'Medium',
+  },
+  slideRightOut: {
+    description: 'A rightward dismiss that feels clean on utility panels and inline drawers.',
+    recommendedFor: 'Best for side panels',
+    intensity: 'Medium',
+  },
+  scaleOut: {
+    description: 'A soft shrink-out transition that keeps cards and dialogs feeling refined.',
+    recommendedFor: 'Best for modals',
+    intensity: 'Subtle',
+  },
+  zoomOut: {
+    description: 'A stronger scale exit for more dramatic hero or feature dismissals.',
+    recommendedFor: 'Best for hero content',
+    intensity: 'Medium',
+  },
+  lift: {
+    description: 'A looping hover lift that adds clear depth to elevated product surfaces.',
+    recommendedFor: 'Best for cards',
+    intensity: 'Medium',
+  },
+  liftSoft: {
+    description: 'A gentler hover lift for subtle motion on chips, tags, and buttons.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Subtle',
+  },
+  glow: {
+    description: 'A stronger ambient glow for focus states and highlighted interactive surfaces.',
+    recommendedFor: 'Best for feature highlights',
+    intensity: 'Medium',
+  },
+  glowSoft: {
+    description: 'A low-contrast glow that works well for refined hover and active states.',
+    recommendedFor: 'Best for badges',
+    intensity: 'Subtle',
+  },
+  tilt: {
+    description: 'A balanced tilt loop that adds motion personality to showcase elements.',
+    recommendedFor: 'Best for cards',
+    intensity: 'Medium',
+  },
+  tiltLeft: {
+    description: 'A directional tilt that feels useful for asymmetric hover treatments.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Subtle',
+  },
+  tiltRight: {
+    description: 'A mirrored tilt variant for alternate hover emphasis on interactive items.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Subtle',
+  },
+  scaleHover: {
+    description: 'A subtle looping scale motion for premium hover and ambient states.',
+    recommendedFor: 'Best for buttons',
+    intensity: 'Subtle',
+  },
+  shadowPop: {
+    description: 'A depth-forward hover preset that boosts elevation with motion and shadow.',
+    recommendedFor: 'Best for cards',
+    intensity: 'Medium',
+  },
+};
+
+export const animationOptions: AnimationConfig[] = baseAnimationOptions.map((animation) => ({
+  ...animation,
+  ...animationMetadata[animation.id],
+}));
+
 export const animationLookup = Object.fromEntries(
   animationOptions.map((animation) => [animation.id, animation]),
 ) as Record<AnimationId, AnimationConfig>;
+
+export const animationCategories: AnimationCategory[] = [
+  'Entrance',
+  'Emphasis',
+  'Exit',
+  'Hover',
+];
 
 export const animationGroups: AnimationGroup[] = [
   {
@@ -756,6 +955,59 @@ export const animationGroups: AnimationGroup[] = [
 ];
 
 export const timingOptions = ['ease', 'linear', 'ease-in', 'ease-out', 'ease-in-out'];
+
+type AnimationRuntimeOptions = {
+  duration: number;
+  delay: number;
+  easing: string;
+  iterationCount: string;
+};
+
+export function buildAnimationCss(animation: AnimationConfig, options: AnimationRuntimeOptions) {
+  const animationName = getAnimationKeyframesName(animation.id);
+
+  return `${animation.keyframes}
+
+.animated-element {
+  animation: ${animationName} ${options.duration}ms ${options.easing} ${options.delay}ms ${options.iterationCount} both;
+}`;
+}
+
+export function buildTailwindExample(
+  animation: AnimationConfig,
+  options: AnimationRuntimeOptions,
+) {
+  const animationName = getAnimationKeyframesName(animation.id);
+
+  return `<div
+  className="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft"
+  style={{
+    animation: '${animationName} ${options.duration}ms ${options.easing} ${options.delay}ms ${options.iterationCount} both',
+  }}
+>
+  ${animation.name} example
+</div>`;
+}
+
+export function buildReactExample(animation: AnimationConfig, options: AnimationRuntimeOptions) {
+  const animationName = getAnimationKeyframesName(animation.id);
+
+  return `export function ExampleCard() {
+  return (
+    <div
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft"
+      style={{
+        animation: '${animationName} ${options.duration}ms ${options.easing} ${options.delay}ms ${options.iterationCount} both',
+      }}
+    >
+      <h3 className="text-lg font-semibold text-slate-950">${animation.name}</h3>
+      <p className="mt-3 text-sm leading-6 text-slate-600">
+        ${animation.description}
+      </p>
+    </div>
+  );
+}`;
+}
 
 export function getAnimationKeyframesName(id: AnimationId) {
   const keyframesNames: Record<AnimationId, string> = {

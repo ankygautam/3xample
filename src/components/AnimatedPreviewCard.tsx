@@ -20,9 +20,13 @@ export function AnimatedPreviewCard({
   const renderDemo = () => {
     if (demoVariant === 'entrance') {
       return (
-        <div className="rounded-[1.45rem] border border-white/70 bg-white/80 p-3 shadow-[0_18px_36px_rgba(148,163,184,0.14)] backdrop-blur-sm sm:p-4">
+        <div className="rounded-[1.55rem] border border-white/75 bg-white/82 p-3 shadow-[0_22px_44px_rgba(148,163,184,0.16)] backdrop-blur-sm sm:p-4">
+          <div className="mb-3 flex items-center justify-between rounded-[1.1rem] border border-slate-200/80 bg-slate-950 px-3 py-2 text-[0.68rem] font-semibold tracking-[0.18em] text-white/80 uppercase">
+            <span>UI reveal</span>
+            <span className="h-2 w-2 rounded-full bg-blue-400" />
+          </div>
           <div
-            className="rounded-[1.1rem] border border-slate-200/90 bg-white p-3 shadow-[0_10px_24px_rgba(148,163,184,0.12)] sm:p-4"
+            className="rounded-[1.15rem] border border-slate-200/90 bg-white p-3 shadow-[0_12px_28px_rgba(148,163,184,0.12)] sm:p-4"
             style={{ animation: 'three-xample-fade-up 1.05s ease-out both' }}
           >
             <div className="h-2.5 w-16 rounded-full bg-blue-100" />
@@ -35,9 +39,9 @@ export function AnimatedPreviewCard({
 
     if (demoVariant === 'loop') {
       return (
-        <div className="flex h-[6.75rem] items-center justify-center rounded-[1.45rem] border border-white/70 bg-white/78 shadow-[0_18px_36px_rgba(148,163,184,0.14)] backdrop-blur-sm sm:h-[7.75rem]">
+        <div className="flex h-[6.75rem] items-center justify-center rounded-[1.55rem] border border-white/70 bg-white/80 shadow-[0_22px_44px_rgba(148,163,184,0.16)] backdrop-blur-sm sm:h-[7.75rem]">
           <div
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-[0_14px_30px_rgba(125,211,252,0.18)]"
+            className="inline-flex items-center gap-2 rounded-full border border-cyan-100 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-[0_16px_34px_rgba(125,211,252,0.18)]"
             style={{ animation: 'three-xample-lift-soft 1.8s ease-in-out infinite' }}
           >
             <span className="h-2 w-2 rounded-full bg-cyan-400" />
@@ -48,8 +52,8 @@ export function AnimatedPreviewCard({
     }
 
     return (
-      <div className="flex h-[6.75rem] items-center justify-center rounded-[1.45rem] border border-white/70 bg-white/78 shadow-[0_18px_36px_rgba(148,163,184,0.14)] backdrop-blur-sm sm:h-[7.75rem]">
-        <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2.5 shadow-[0_14px_30px_rgba(148,163,184,0.14)]">
+      <div className="flex h-[6.75rem] items-center justify-center rounded-[1.55rem] border border-white/70 bg-white/80 shadow-[0_22px_44px_rgba(148,163,184,0.16)] backdrop-blur-sm sm:h-[7.75rem]">
+        <div className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2.5 shadow-[0_16px_34px_rgba(148,163,184,0.15)]">
           <span
             className="h-3 w-3 rounded-full bg-emerald-400"
             style={{ animation: 'three-xample-pulse-soft 1.5s ease-in-out infinite' }}
@@ -62,11 +66,13 @@ export function AnimatedPreviewCard({
 
   return (
     <article
-      className={`group relative overflow-hidden rounded-[1.9rem] border border-slate-200 bg-gradient-to-br ${accentClassName} p-5 shadow-panel transition hover:-translate-y-1 hover:shadow-lift sm:p-6`}
+      className={`group relative overflow-hidden rounded-[2rem] border border-slate-200/90 bg-gradient-to-br ${accentClassName} p-5 shadow-panel transition duration-300 hover:-translate-y-1.5 hover:border-slate-300/90 hover:shadow-lift sm:p-6`}
       style={animationStyle}
     >
-      <div className="absolute inset-x-6 top-0 h-16 rounded-b-full bg-white/60 blur-2xl" />
-      <div className="absolute right-5 top-5 h-12 w-12 rounded-full bg-white/35 blur-2xl" />
+      <div className="absolute inset-x-6 top-0 h-16 rounded-b-full bg-white/65 blur-2xl" />
+      <div className="absolute right-5 top-5 h-12 w-12 rounded-full bg-white/40 blur-2xl" />
+      <div className="absolute inset-x-5 top-5 h-px bg-white/80" />
+      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white/45 to-transparent opacity-60" />
       <p className="text-xs font-semibold tracking-[0.24em] text-slate-500 uppercase">{eyebrow}</p>
       <h3 className="mt-5 text-[1.45rem] font-semibold tracking-tight text-slate-950 sm:mt-6 sm:text-2xl">
         {title}
